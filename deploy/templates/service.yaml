@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+  labels:
+    name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+    release: {{ .Release.Name }}
+    {{- include "idempotency.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+  

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+  labels:
+    {{- include "idempotency.labels" . | nindent 4 }}
+    app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+      labels:
+        app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+    spec:
+      serviceAccountName: {{ include "idempotency.serviceAccountName" . }}
+      containers:
+        - name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+          image: kuzindiman/marketplace.api:latest
+          imagePullPolicy: Always
+      restartPolicy: Always
+      
