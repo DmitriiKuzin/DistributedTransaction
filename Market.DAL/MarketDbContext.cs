@@ -11,6 +11,8 @@ public class MarketDbContext: DbContext
         var a = new NpgsqlConnectionStringBuilder();
         a.Host = "localhost";
         a.Database = "market";
+        a.Username = "postgres";
+        a.Password = "OV4FVKzfrn";
         optionsBuilder.UseNpgsql(a.ToString());
         base.OnConfiguring(optionsBuilder);
     }

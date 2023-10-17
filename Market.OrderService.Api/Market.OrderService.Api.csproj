@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Market.DAL\Market.DAL.csproj" />
+      <ProjectReference Include="..\Market.Mq\Market.Mq.csproj" />
     </ItemGroup>
 
 </Project>
