@@ -14,7 +14,7 @@ public static class MqExtension
             // elided...
             x.UsingRabbitMq((context,cfg) =>
             {
-                cfg.Host("rabbitmq", "/", h => {
+                cfg.Host(Environment.GetEnvironmentVariable("RABBITMQ_HOST"), "/", h => {
                     h.Username(Environment.GetEnvironmentVariable("RABBITMQ_USER"));
                     h.Password(Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD"));
                 });

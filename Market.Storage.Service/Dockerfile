@@ -1,20 +1,23 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine as build
+ARG APP_CONFIG=Release
+ARG BASE_PATH=.
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Market.Storage.Api/Market.Storage.Api.csproj", "Market.Storage.Api/"]
-RUN dotnet restore "Market.Storage.Api/Market.Storage.Api.csproj"
-COPY . .
-WORKDIR "/src/Market.Storage.Api"
-RUN dotnet build "Market.Storage.Api.csproj" -c Release -o /app/build
+COPY $BASE_PATH/Market.DAL/Market.DAL.csproj Market.DAL/
+COPY $BASE_PATH/Market.Mq/Market.Mq.csproj Market.Mq/
+COPY $BASE_PATH/Market.Storage.Service/Market.Storage.Service.csproj Market.Storage.Service/
+RUN dotnet restore "Market.Storage.Service/Market.Storage.Service.csproj" /p:Configuration=$APP_CONFIG
 
-FROM build AS publish
-RUN dotnet publish "Market.Storage.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+COPY $BASE_PATH/Market.DAL/. Market.DAL/
+COPY $BASE_PATH/Market.Mq/. Market.Mq/
+COPY $BASE_PATH/Market.Storage.Service/. Market.Storage.Service/
+RUN dotnet publish "Market.Storage.Service/Market.Storage.Service.csproj" -c $APP_CONFIG -o /out --no-restore
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine
+RUN apk upgrade musl
+RUN adduser --disabled-password --home /app --gecos '' appuser && chown -R appuser /app
+USER appuser
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Market.Storage.Api.dll"]
+COPY --from=build /out ./
+
+ENTRYPOINT ["dotnet", "Market.Storage.Service.dll"]

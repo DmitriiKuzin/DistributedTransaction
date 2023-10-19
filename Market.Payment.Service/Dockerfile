@@ -1,20 +1,21 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine as build
+ARG APP_CONFIG=Release
+ARG BASE_PATH=.
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Market.Payment.Api/Market.Payment.Api.csproj", "Market.Payment.Api/"]
-RUN dotnet restore "Market.Payment.Api/Market.Payment.Api.csproj"
-COPY . .
-WORKDIR "/src/Market.Payment.Api"
-RUN dotnet build "Market.Payment.Api.csproj" -c Release -o /app/build
+COPY $BASE_PATH/Market.Mq/Market.Mq.csproj Market.Mq/
+COPY $BASE_PATH/Market.Payment.Service/Market.Payment.Service.csproj Market.Payment.Service/
+RUN dotnet restore "Market.Payment.Service/Market.Payment.Service.csproj" /p:Configuration=$APP_CONFIG
 
-FROM build AS publish
-RUN dotnet publish "Market.Payment.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+COPY $BASE_PATH/Market.Mq/. Market.Mq/
+COPY $BASE_PATH/Market.Payment.Service/. Market.Payment.Service/
+RUN dotnet publish "Market.Payment.Service/Market.Payment.Service.csproj" -c $APP_CONFIG -o /out --no-restore
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine
+RUN apk upgrade musl
+RUN adduser --disabled-password --home /app --gecos '' appuser && chown -R appuser /app
+USER appuser
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Market.Payment.Api.dll"]
+COPY --from=build /out ./
+
+ENTRYPOINT ["dotnet", "Market.Payment.Service.dll"]

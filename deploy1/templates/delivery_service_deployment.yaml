@@ -35,7 +35,7 @@ spec:
                   name: "connections-secret"        
       
           name: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
-          image: kuzindiman/marketplace.api:latest
+          image: kuzindiman/market-delivery-service.api:latest
           imagePullPolicy: Always
       restartPolicy: Always
       

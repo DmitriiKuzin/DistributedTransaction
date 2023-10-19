@@ -9,7 +9,7 @@ public class MarketDbContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var a = new NpgsqlConnectionStringBuilder();
-        a.Host = "postgresql";
+        a.Host = Environment.GetEnvironmentVariable("POSTGRES_HOST");
         a.Database = "market";
         a.Username = "postgres";
         a.Password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");

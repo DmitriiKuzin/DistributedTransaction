@@ -34,7 +34,7 @@ spec:
                   key: "rabbitMq_password"
                   name: "connections-secret"
           name: {{ .Release.Name }}-payment-service-{{ .Release.Revision }}
-          image: kuzindiman/marketplace.api:latest
+          image: kuzindiman/market-payment-service:latest
           imagePullPolicy: Always
       restartPolicy: Always
       
