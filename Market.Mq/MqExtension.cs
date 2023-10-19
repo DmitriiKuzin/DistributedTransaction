@@ -5,27 +5,18 @@ namespace Market.Mq;
 
 public static class MqExtension
 {
-    public static IServiceCollection AddRabbitMq(this IServiceCollection sc)
+    public static IServiceCollection AddRabbitMq(this IServiceCollection sc, Action<IBusRegistrationConfigurator> conf = null)
     {
      
         sc.AddMassTransit(x =>
         {
-            x.AddSaga<OrderSaga>();
-            x.SetInMemorySagaRepositoryProvider();
+            conf?.Invoke(x);
             // elided...
             x.UsingRabbitMq((context,cfg) =>
             {
-                cfg.ReceiveEndpoint("manually-configured", e =>
-                {
-                    // configure any required middleware components next
-                    e.UseMessageRetry(r => r.Interval(5, 1000));
-            
-                    // configure the saga last
-                    e.ConfigureSaga<OrderSaga>(context);
-                });
-                cfg.Host("localhost", "/", h => {
-                    h.Username("user");
-                    h.Password("rZx9EArHfiBRRDPy");
+                cfg.Host("rabbitmq", "/", h => {
+                    h.Username(Environment.GetEnvironmentVariable("RABBITMQ_USER"));
+                    h.Password(Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD"));
                 });
                 cfg.ConfigureEndpoints(context);
             });

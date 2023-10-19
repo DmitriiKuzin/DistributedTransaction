@@ -1,39 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+  name: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
   labels:
     {{- include "marketplace.labels" . | nindent 4 }}
-    app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+    app: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+      app: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
   template:
     metadata:
-      name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+      name: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
       labels:
-        app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+        app: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
     spec:
-      containers:
+      containers:           
         - env:
             - name: "POSTGRES_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   key: "postgres_password"
-                  name: "connections-secret"
+                  name: "connections-secret"  
             - name: "RABBITMQ_USER"
               valueFrom:
                 secretKeyRef:
                   key: "rabbitMq_user"
-                  name: "connections-secret"
+                  name: "connections-secret"  
             - name: "RABBITMQ_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   key: "rabbitMq_password"
-                  name: "connections-secret"
-          name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
+                  name: "connections-secret"        
+      
+          name: {{ .Release.Name }}-delivery-service-{{ .Release.Revision }}
           image: kuzindiman/marketplace.api:latest
           imagePullPolicy: Always
       restartPolicy: Always

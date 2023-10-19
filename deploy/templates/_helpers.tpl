@@ -33,7 +33,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Common labels
 */}}
-{{- define "idempotency.labels" -}}
+{{- define "marketplace.labels" -}}
 helm.sh/chart: {{ include "idempotency.chart" . }}
 {{ include "idempotency.selectorLabels" . }}
 {{- if .Chart.AppVersion }}

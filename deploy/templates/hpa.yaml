@@ -4,7 +4,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "idempotency.fullname" . }}
   labels:
-    {{- include "idempotency.labels" . | nindent 4 }}
+    {{- include "marketplace.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

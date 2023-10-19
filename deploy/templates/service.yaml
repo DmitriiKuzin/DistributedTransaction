@@ -5,7 +5,7 @@ metadata:
   labels:
     name: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}
     release: {{ .Release.Name }}
-    {{- include "idempotency.labels" . | nindent 4 }}
+    {{- include "marketplace.labels" . | nindent 4 }}
 spec:
   selector:
     app: {{ .Release.Name }}-marketplace-api-{{ .Release.Revision }}

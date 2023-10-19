@@ -20,3 +20,19 @@ public class Item
 {
     public Guid Id { get; set; }
 }
+
+public class Allocation
+{
+    public long Id { get; set; }
+    public Guid OrderId { get; set; }
+    public Order Order { get; set; }
+    public bool IsAllocated { get; set; }
+}
+
+public class DeliveryAllocation
+{
+    public long Id { get; set; }
+    public Guid OrderId { get; set; }
+    public Order Order { get; set; }
+    public bool IsAllocated { get; set; }
+}

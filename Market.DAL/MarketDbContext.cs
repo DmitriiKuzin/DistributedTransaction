@@ -9,13 +9,15 @@ public class MarketDbContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var a = new NpgsqlConnectionStringBuilder();
-        a.Host = "localhost";
+        a.Host = "postgresql";
         a.Database = "market";
         a.Username = "postgres";
-        a.Password = "OV4FVKzfrn";
+        a.Password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
         optionsBuilder.UseNpgsql(a.ToString());
         base.OnConfiguring(optionsBuilder);
     }
 
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Allocation> Allocations { get; set; }
+    public DbSet<DeliveryAllocation> DeliveryAllocations { get; set; }
 }

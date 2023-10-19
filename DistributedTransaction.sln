@@ -2,13 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.DAL", "Market.DAL\Market.DAL.csproj", "{64ACC9C8-0914-4D85-AA16-54357246E525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Delivery.Api", "Market.Delivery.Api\Market.Delivery.Api.csproj", "{C0BC615C-80D0-4821-96A4-56E753EE7A6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Delivery.Service", "Market.Delivery.Service\Market.Delivery.Service.csproj", "{C0BC615C-80D0-4821-96A4-56E753EE7A6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.OrderService.Api", "Market.OrderService.Api\Market.OrderService.Api.csproj", "{173F17BE-D61A-4574-BCE1-3BF99A6C8F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Payment.Api", "Market.Payment.Api\Market.Payment.Api.csproj", "{ACED99E7-7656-47CF-8653-25D9AE55E02F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Payment.Service", "Market.Payment.Service\Market.Payment.Service.csproj", "{ACED99E7-7656-47CF-8653-25D9AE55E02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Storage.Api", "Market.Storage.Api\Market.Storage.Api.csproj", "{118E5E60-3E3A-4B1E-80FD-C1CF13646253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Storage.Service", "Market.Storage.Service\Market.Storage.Service.csproj", "{118E5E60-3E3A-4B1E-80FD-C1CF13646253}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Api", "Marketplace.Api\Marketplace.Api.csproj", "{4571F599-C4D1-41AA-AD75-23043ECAD5C5}"
 EndProject

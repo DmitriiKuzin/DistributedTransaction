@@ -5,6 +5,8 @@
 namespace: "distributed-transaction"
 
 postgresPassword: &global-postgresPassword 35135143s5fasfawf
+rabbitMqUser: &global-rabbitMqUser user
+rabbitMqPassword: &global-rabbitMqPassword rabb35135143s5fasfawf
 host: &host "arch.homework"
 
 postgresql:
@@ -13,5 +15,10 @@ postgresql:
       size: 500Mi
   auth:
     postgresPassword: *global-postgresPassword
+    
+rabbitmq: 
+   auth:
+     username: *global-rabbitMqUser
+     password: *global-rabbitMqPassword
 
 replicaCount: 1
