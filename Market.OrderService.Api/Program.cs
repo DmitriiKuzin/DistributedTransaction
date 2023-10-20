@@ -32,8 +32,8 @@ app.MapGet("/getDeliveryAllocationInfo/{orderId:guid}",
     async (Guid orderId, MarketDbContext dbContext) =>
         await dbContext.DeliveryAllocations.AsNoTracking().Where(x=>  x.OrderId == orderId).Select(x => x.IsAllocated).FirstOrDefaultAsync());
 
+await MqExtension.WaitForRabbitReady();
 var dbContext = app.Services.CreateScope().ServiceProvider.GetService<MarketDbContext>();
-Thread.Sleep(5000);
 dbContext.Database.Migrate();
 app.Run();
 

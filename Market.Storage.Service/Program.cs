@@ -14,4 +14,5 @@ IHost host = Host.CreateDefaultBuilder(args)
     }); })
     .Build();
 
+await MqExtension.WaitForRabbitReady();
 host.Run();

@@ -7,10 +7,12 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddDbContext<MarketDbContext>();
         services.AddRabbitMq(x =>
-    {
-        x.AddRequestClient<AllocateDeliveryTimeslot>();
-        x.AddConsumer<AllocateDeliveryTimeslotConsumer>();
-    }); })
+        {
+            x.AddRequestClient<AllocateDeliveryTimeslot>();
+            x.AddConsumer<AllocateDeliveryTimeslotConsumer>();
+        });
+    })
     .Build();
 
+await MqExtension.WaitForRabbitReady();
 host.Run();

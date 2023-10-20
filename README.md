@@ -1,7 +1,7 @@
 # Otus-ApiGateWay
 
 ```shell
-helm install otus deploy --namespace otus-distributed-transaction --create-namespace --dependency-update
+helm install otus .\deploy\distributed-transaction\ --namespace otus-dt --create-namespace
 ```
 
 ```shell
