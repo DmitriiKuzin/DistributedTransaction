@@ -32,11 +32,12 @@ app.MapGet("/getDeliveryAllocationInfo/{orderId:guid}",
     async (Guid orderId, MarketDbContext dbContext) =>
         await dbContext.DeliveryAllocations.AsNoTracking().Where(x=>  x.OrderId == orderId).Select(x => x.IsAllocated).FirstOrDefaultAsync());
 
-var appTask = app.RunAsync();
+var dbContext = app.Services.CreateScope().ServiceProvider.GetService<MarketDbContext>();
+Thread.Sleep(5000);
+dbContext.Database.Migrate();
+app.Run();
 
-var bus = app.Services.CreateScope().ServiceProvider.GetService<IBus>();
 
-await appTask;
 
 class OrderService
 {
