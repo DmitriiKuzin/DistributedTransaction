@@ -5,5 +5,5 @@ helm install otus .\deploy\distributed-transaction\ --namespace otus-dt --create
 ```
 
 ```shell
-newman run .\idempotency.postman_collection.json
+newman run .\distributed_transaction.postman_collection.json
 ```
