@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "3963a725-3fa9-4278-ab9c-7e3deada92c5",
+		"name": "distributed_transaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8353437"
+	},
+	"item": [
+		{
+			"name": "CreateOrder",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.request.body.toJSON());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"53a85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/order",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsStorageAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getStorageAllocationInfo/53a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getStorageAllocationInfo",
+						"53a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsDeliveryAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getDeliveryAllocationInfo/53a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getDeliveryAllocationInfo",
+						"53a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrderFailedPayment",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.request.body.toJSON());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"13a85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/order",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsStorageAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getStorageAllocationInfo/13a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getStorageAllocationInfo",
+						"13a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsDeliveryAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getDeliveryAllocationInfo/13a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getDeliveryAllocationInfo",
+						"13a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrderFailedStorageAllocation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.request.body.toJSON());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"23a85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/order",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsStorageAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getStorageAllocationInfo/23a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getStorageAllocationInfo",
+						"23a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsDeliveryAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getDeliveryAllocationInfo/23a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getDeliveryAllocationInfo",
+						"23a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrderFailedDeliveryAllocation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(pm.request.body.toJSON());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"33a85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/order",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsStorageAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getStorageAllocationInfo/33a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getStorageAllocationInfo",
+						"33a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsDeliveryAllocated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getDeliveryAllocationInfo/33a85f64-5717-4562-b3fc-2c963f66afa6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getDeliveryAllocationInfo",
+						"33a85f64-5717-4562-b3fc-2c963f66afa6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://arch.homework",
+			"type": "string"
+		}
+	]
+}
